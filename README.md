@@ -21,3 +21,7 @@ Se trabajó con los siguientes elementos:
 - led
 - botoneras
 - pila 9V  
+
+### SIMULADOR
+
+https://www.tinkercad.com/things/gtISBJqVlyi
