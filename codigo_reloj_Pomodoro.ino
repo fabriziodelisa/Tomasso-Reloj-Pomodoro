@@ -13,7 +13,8 @@ unsigned long tiempoInicial;
 unsigned long tiempoActual;
 unsigned long tiempoTranscurrido;
 unsigned long momentoEncendidoDisplay = 0;
-const unsigned long tiempoMantenerEncendidoDisplay = 10 * 1000;
+const int SegEncendidoLuz = 10;
+const unsigned long tiempoMantenerEncendidoDisplay = SegEncendidoLuz * 1000;
 const int minInicialDescanso = 5;
 const int minInicialTrabajo = 25;
 const int minInicialDescansoLargo = 30;
@@ -79,13 +80,16 @@ void loop()
   // Boton de luz display
   if (digitalRead(enciendeLuzBtn) == HIGH)
   {
-    encenderLuzDisplay();
+    delay(50);
+    encenderLuzDisplay();    
   }
 
   // Boton de reseteo
   if (digitalRead(restartBtn) == HIGH)
   {
+    delay(50);
     encenderLuzDisplay();
+    while(digitalRead(restartBtn) == HIGH){};
     minutos = minInicialTrabajo;
     segundos = 1;
     trabajando = true;
@@ -96,9 +100,10 @@ void loop()
   // Boton de Play/Pausa
   if (digitalRead(pausaBtn) == HIGH)
   {
+    delay(50);
     encenderLuzDisplay();
+    while(digitalRead(pausaBtn) == HIGH){};
     enPausa = !enPausa;
-    delay(300);
   }
 
   // Control de tiempo de encendido de luz display
